@@ -61,11 +61,15 @@ export default function Home() {
       </div>
       <footer className="page-footer">
         <div>
-          <a href="#">нүүр</a>
+          <a href="#">Facebook </a>
           {" | "}
-          <a href="#">сургалт</a>
+          <a href="#">Youtube</a>
           {" | "}
-          <a href="#">фэйсбүүк</a>
+          <a href="#">Instagram</a>
+          {" | "}
+          <a href="#">Twitter</a>
+          {" | "}
+          <a href="#">Pinterest</a>
         </div>
       </footer>
     </Container>
