@@ -1,5 +1,4 @@
 import { Media, Image } from "react-bootstrap";
-
 export default () => (
   <Media className="mb-4 admin-intro">
     <Image

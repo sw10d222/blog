@@ -9,10 +9,10 @@ import {
   Card,
 } from "react-bootstrap";
 
-import MyNavbar from "../components/my-navbar";
-import Intro from "../components/intro";
-import ListItem from "../components/list-item";
-import GridItem from "../components/grid-item";
+import MyNavbar from "components/my-navbar";
+import Intro from "components/intro";
+import ListItem from "components/list-item";
+import GridItem from "components/grid-item";
 
 export default function Home() {
   return (
@@ -66,10 +66,6 @@ export default function Home() {
           <a href="#">Youtube</a>
           {" | "}
           <a href="#">Instagram</a>
-          {" | "}
-          <a href="#">Twitter</a>
-          {" | "}
-          <a href="#">Pinterest</a>
         </div>
       </footer>
     </Container>
