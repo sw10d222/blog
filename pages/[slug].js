@@ -1,8 +1,10 @@
 import { Row, Col } from "react-bootstrap";
 import Layout from "components/layout";
 import { getPostBySlug, getAllPosts } from "lib/api";
-import Hightlightcode from "components/HighlightCode";
+import Hightlightcode from "components/highlight-code";
 import { urlFor } from "lib/api";
+
+import PostHeader from "components/post-header";
 const BlockContent = require("@sanity/block-content-to-react");
 const serializers = {
   types: {
@@ -28,35 +30,10 @@ export default ({ post }) => {
       <Row>
         <Col md="12">
           {/* {<pre>{JSON.stringify(post, null, 2)}</pre>} */}
-          <div className="blog-detail-header">
-            <p className="lead mb-0">
-              <img
-                src={post.publisher.picture}
-                className="rounded-circle mr-3"
-                height="50px"
-                width="50px"
-              />
-              {post.publisher.title}, {post.date}
-            </p>
+          <PostHeader post={post}>
+            <br />
+          </PostHeader>
 
-            <h1 className="font-weight-bold blog-detail-header-title mb-0">
-              {post.title}
-            </h1>
-
-            <h2 className="blog-detail-header-subtitle mb-3">
-              {post.subtitle}
-            </h2>
-
-            <img
-              className="img-fluid rounded"
-              src={urlFor(post.cover_image).height(600).url()}
-              alt={post.cover_image.alt}
-            />
-            <div className="code-filename" style={{ textAlign: "center" }}>
-              {post.cover_image.alt}
-            </div>
-          </div>
-          <br />
           <BlockContent
             blocks={post.content}
             serializers={serializers}
@@ -69,7 +46,6 @@ export default ({ post }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  console.log("========>getStaticProps", params.slug);
   const post = await getPostBySlug(params.slug);
   return {
     props: {
