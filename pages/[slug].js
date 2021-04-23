@@ -1,30 +1,21 @@
 import { Row, Col } from "react-bootstrap";
 import Layout from "components/layout";
-import { getPostBySlug, getAllPosts } from "lib/api";
+import { getPostBySlug, getPagenatedPosts } from "lib/api";
 import Hightlightcode from "components/highlight-code";
 import { urlFor } from "lib/api";
-
 import PostHeader from "components/post-header";
+import { useRouter } from "next/router";
+import layout from "components/layout";
 const BlockContent = require("@sanity/block-content-to-react");
-const serializers = {
-  types: {
-    code: (props) => (
-      <Hightlightcode language={props.node.language}>
-        {props.node.code}
-        <div className="code-filename">{props.node.filename}</div>
-      </Hightlightcode>
-    ),
-    image: (props) => (
-      <div className={`blog-image blog-image-${props.node.position}`}>
-        <img src={urlFor(props.node).height(400).url()} />
-        <div className="code-filename" style={{ textAlign: "center" }}>
-          {props.node.alt}
-        </div>
-      </div>
-    ),
-  },
-};
+
 export default ({ post }) => {
+  const router = useRouter();
+  if (router.isFallback)
+    return (
+      <layout>
+        <div>Түр хүлээнэ үү</div>
+      </layout>
+    );
   return (
     <Layout>
       <Row>
@@ -44,7 +35,24 @@ export default ({ post }) => {
     </Layout>
   );
 };
-
+const serializers = {
+  types: {
+    code: (props) => (
+      <Hightlightcode language={props.node.language}>
+        {props.node.code}
+        <div className="code-filename">{props.node.filename}</div>
+      </Hightlightcode>
+    ),
+    image: (props) => (
+      <div className={`blog-image blog-image-${props.node.position}`}>
+        <img src={urlFor(props.node).height(400).url()} />
+        <div className="code-filename" style={{ textAlign: "center" }}>
+          {props.node.alt}
+        </div>
+      </div>
+    ),
+  },
+};
 export const getStaticProps = async ({ params }) => {
   const post = await getPostBySlug(params.slug);
   return {
@@ -54,7 +62,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 export const getStaticPaths = async ({ params }) => {
-  const posts = await getAllPosts();
+  const posts = await getPagenatedPosts(0, 4);
 
   const data = posts.map((post) => ({
     params: {
@@ -63,6 +71,6 @@ export const getStaticPaths = async ({ params }) => {
   }));
   return {
     paths: data,
-    fallback: false,
+    fallback: true,
   };
 };
