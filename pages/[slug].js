@@ -8,18 +8,25 @@ import { useRouter } from "next/router";
 import layout from "components/layout";
 const BlockContent = require("@sanity/block-content-to-react");
 
-export default ({ post }) => {
+export default ({ post, preview }) => {
   const router = useRouter();
   if (router.isFallback)
     return (
-      <layout>
+      <Layout>
         <div>Түр хүлээнэ үү</div>
-      </layout>
+      </Layout>
+    );
+  if (!router.isFallback && !post?.slug)
+    return (
+      <Layout>
+        <div>Уучлаарай ийм пост байхгүй байна</div>
+      </Layout>
     );
   return (
     <Layout>
       <Row>
         <Col md="12">
+          {preview && <div>та preview горимд байна</div>}
           {/* {<pre>{JSON.stringify(post, null, 2)}</pre>} */}
           <PostHeader post={post}>
             <br />
@@ -53,11 +60,12 @@ const serializers = {
     ),
   },
 };
-export const getStaticProps = async ({ params }) => {
-  const post = await getPostBySlug(params.slug);
+export const getStaticProps = async ({ params, preview = false }) => {
+  const post = await getPostBySlug(params.slug, preview);
   return {
     props: {
-      post: post[0],
+      post: post.length > 1 ? post[1] : post.length > 0 ? post[0] : {},
+      preview,
     },
   };
 };
