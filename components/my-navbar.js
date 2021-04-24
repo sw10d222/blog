@@ -8,7 +8,12 @@ import { faSun } from "@fortawesome/free-solid-svg-icons";
 export default () => {
   const { theme, toggleTheme } = useTheme();
   return (
-    <Navbar className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
+    <Navbar
+      variant={theme.type}
+      className="fj-navbar fj-nav-base"
+      bg="transparent"
+      expand="lg"
+    >
       <Navbar.Brand className="fj-navbar-brand">
         <Link href="/">
           <a style={{ color: theme.fontColor }}>ULN news blog</a>
@@ -37,9 +42,14 @@ export default () => {
               onChange={toggleTheme}
             />
           </label>
-          <Nav.Link className="fj-navbar-item fj-navbar-link" href="/">
-            НҮҮР
-          </Nav.Link>
+          <Link href="/">
+            <a
+              className="fj-navbar-item fj-navbar-link"
+              style={{ color: theme.fontColor }}
+            >
+              НҮҮР
+            </a>
+          </Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
