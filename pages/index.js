@@ -35,7 +35,7 @@ export default function Home({ posts, preview }) {
       <div style={{ textAlign: "center" }}>
         {data[data.length - 1].length !== 0 &&
           (isValidating ? (
-            <div style={{ fontSize: 14 }}>Түр хүлээнэ үү...</div>
+            <div>Түр хүлээнэ үү...</div>
           ) : (
             <Button onClick={() => setSize(size + 1)}>Дахин үзэх...</Button>
           ))}
