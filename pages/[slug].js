@@ -1,14 +1,14 @@
 import { Row, Col } from "react-bootstrap";
-import Layout from "components/layout";
 import { getPostBySlug, getPagenatedPosts } from "lib/api";
 import Hightlightcode from "components/highlight-code";
 import { urlFor } from "lib/api";
 import PostHeader from "components/post-header";
 import { useRouter } from "next/router";
-import layout from "components/layout";
+import Layout from "components/layout";
+import PreviewAlert from "components/preview-alert";
 const BlockContent = require("@sanity/block-content-to-react");
 
-export default ({ post, preview }) => {
+const PostDetail = ({ post, preview }) => {
   const router = useRouter();
   if (router.isFallback)
     return (
@@ -26,7 +26,7 @@ export default ({ post, preview }) => {
     <Layout>
       <Row>
         <Col md="12">
-          {preview && <div>та preview горимд байна</div>}
+          {preview && <PreviewAlert></PreviewAlert>}
           {/* {<pre>{JSON.stringify(post, null, 2)}</pre>} */}
           <PostHeader post={post}>
             <br />
@@ -42,6 +42,7 @@ export default ({ post, preview }) => {
     </Layout>
   );
 };
+export default PostDetail;
 const serializers = {
   types: {
     code: (props) => (
