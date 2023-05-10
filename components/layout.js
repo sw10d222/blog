@@ -12,11 +12,11 @@ export default ({ children }) => {
         </div>
         <footer className="page-footer">
           <div>
-            <a href="https://www.facebook.com/MisterJansan">Facebook </a>
+            <a href="https://www.facebook.com/MisterJansan" target="_blank">Facebook </a>
             {" | "}
-            <a href="https://www.youtube.com/SW10D222">Youtube</a>
+            <a href="https://www.youtube.com/SW10D222" target="_blank" >Youtube</a>
             {" | "}
-            <a href="https://www.instagram.com/misterjantsan/">Instagram</a>
+            <a href="https://www.instagram.com/misterjantsan/" target="_blank" >Instagram</a>
           </div>
         </footer>
       </Container>
