@@ -16,7 +16,7 @@ export default () => {
     >
       <Navbar.Brand className="fj-navbar-brand">
         <Link href="/">
-          <a style={{ color: theme.fontColor }}>ULN news blog</a>
+          <a style={{ color: theme.fontColor }}>Mister Jantsan's blog</a>
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
