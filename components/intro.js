@@ -10,7 +10,7 @@ export default () => (
       alt="Generic placeholder"
     />
     <Media.Body>
-      <h5 className="font-weight-bold mb-0">Mister Jantsan I was here...  </h5>
+      <h5 className="font-weight-bold mb-0"> I was here...  </h5>
       <p className="welcome-text">
         Ая дуусхаас өмнө бүжиглэ Амьдрал дуусхаас өмнө дурла хайрла аяла.
       </p>
